@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayerMask;
 
     private float groundCheckRadius = .2f;
+    private bool canDoubleJump;
 
     void Start()
     {
@@ -25,6 +26,13 @@ public class PlayerController : MonoBehaviour
         movePlayer();
         CheckGround();
         Jump();
+
+
+        //if player is on the ground -> reset double jump
+        if (playerOnGround)
+        {
+            canDoubleJump = true;
+        }
     }
 
     //Player movement
@@ -33,7 +41,7 @@ public class PlayerController : MonoBehaviour
         playerRb.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), playerRb.velocity.y);
     }
 
-    //Check if player is on the ground
+    //Check if the player is on the ground
     void CheckGround()
     {
         playerOnGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayerMask);
@@ -45,6 +53,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && playerOnGround)
         {
             playerRb.velocity = new Vector2(playerRb.velocity.x, jumpForce);
+        } else
+        {
+            //double jumping
+            if(Input.GetButtonDown("Jump") && canDoubleJump)
+            {
+                playerRb.velocity = new Vector2(playerRb.velocity.x, jumpForce);
+                canDoubleJump = false;
+            }
         }
     }
 }
