@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 248663479}
   - component: {fileID: 248663481}
   - component: {fileID: 248663480}
+  - component: {fileID: 248663482}
   m_Layer: 5
   m_Name: SettingsTxt
   m_TagString: Untagged
@@ -407,6 +408,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248663478}
   m_CullTransparentMesh: 0
+--- !u!114 &248663482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248663478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8dae1e1444efab479a82884545971f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &460296953
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +501,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 460296956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1939382190}
+        m_MethodName: OpenSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &460296956
 MonoBehaviour:
   m_ObjectHideFlags: 0
