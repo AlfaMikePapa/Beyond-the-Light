@@ -16,6 +16,12 @@ public class MainMenu2 : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
+   
+    // Settings menu Back button functions
+    public void BackBtn()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+    } 
 
     //Main Menu quit button function
     public void QuitGame()
@@ -23,9 +29,4 @@ public class MainMenu2 : MonoBehaviour
         Application.Quit();
     }
 
-    // Settings menu Back button functions
-    public void BackBtn()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
-    }
 }

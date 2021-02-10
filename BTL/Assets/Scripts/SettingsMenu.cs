@@ -11,8 +11,9 @@ public class SettingsMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     } 
 
+    // Settings menu Back button functions
     public void BackBtn()
     {
-        SceneManager.BackBtn(SceneManager.GetActiveScene().buildIndex - 2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
     } */
 }
