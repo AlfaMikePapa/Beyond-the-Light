@@ -29,6 +29,11 @@ public class MainMenu2 : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 
+    //Credits menu BackBtn functions
+    public void CrdBackBtn()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+    }
     //Main Menu quit button function
     public void QuitGame()
     {
