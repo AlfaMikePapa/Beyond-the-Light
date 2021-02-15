@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     private Rigidbody2D playerRb;
+    private SpriteRenderer sprRend;
 
     private bool playerOnGround;
     public Transform groundCheck;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
+        sprRend = GetComponent<SpriteRenderer>();
     }
 
 
@@ -39,6 +41,16 @@ public class PlayerController : MonoBehaviour
     void movePlayer()
     {
         playerRb.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), playerRb.velocity.y);
+
+        //flip the sprite based on which way the player is moving
+        if (playerRb.velocity.x < 0)
+        {
+            sprRend.flipX = true;
+        }
+        else if (playerRb.velocity.x > 0)
+        {
+            sprRend.flipX = false;
+        }
     }
 
     //Check if the player is on the ground
