@@ -79,4 +79,9 @@ public class MainMenu2 : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 4);
     }
 
+    // Select level 1
+    public void Lvl1()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+    }
 }
