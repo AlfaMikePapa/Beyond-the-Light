@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayerMask;
 
-    private float groundCheckRadius = .2f;
+    private float groundCheckRadius = .1f;
     private bool canDoubleJump;
 
     void Start()
