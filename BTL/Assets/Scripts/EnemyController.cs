@@ -8,6 +8,11 @@ public class EnemyController : MonoBehaviour
     public Transform leftPoint, rightPoint;
     private Rigidbody2D enemyRB;
     private bool movingRight;
+    public GameObject Player;
+    
+    public Transform player;
+    private Vector2 movement;
+
     
     void Start()
     {
@@ -22,7 +27,23 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        MoveBetweenPoints();
+        //pelaajan suunnasta liike
+        Vector3 direction = player.position - transform.position;
+        direction.Normalize();
+        movement = direction;
+
+        //MoveBetweenPoints();
+    }
+
+    private void FixedUpdate()
+    {
+        MoveTowardsPlayer(movement);
+    }
+
+    
+    void MoveTowardsPlayer(Vector2 direction)
+    {
+        enemyRB.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
     public void MoveBetweenPoints()
@@ -50,7 +71,10 @@ public class EnemyController : MonoBehaviour
     //Collision with player detection
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("EnemyHit");
+        if (collider.gameObject.name == "Player")
+        {
+            Debug.Log("EnemyHit");
+        }
     }
 }
 
