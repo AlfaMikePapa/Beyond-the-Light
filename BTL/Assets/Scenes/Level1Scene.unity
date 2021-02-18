@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 77713058}
-  smoothing: 0.6
+  smoothing: 0.1
 --- !u!1001 &744435644
 PrefabInstance:
   m_ObjectHideFlags: 0
