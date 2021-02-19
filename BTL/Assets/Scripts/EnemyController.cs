@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     
     public Transform player;
     private Vector2 movement;
+    public float distance;
 
     
     void Start()
@@ -27,19 +28,29 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        //pelaajan suunnasta liike
+        //players position  into movement
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
         movement = direction;
 
-        //MoveBetweenPoints();
+        //Calculate distance to player
+        distance = Vector3.Distance(player.position, transform.position);
     }
 
     private void FixedUpdate()
     {
-        MoveTowardsPlayer(movement);
+        //Increased movement speed when player is close and follow
+        if (distance < 3.5)
+        {
+            moveSpeed = 4;
+            MoveTowardsPlayer(movement);
+        }
+        else
+        {
+            moveSpeed = 1.5f;
+            MoveBetweenPoints();
+        }
     }
-
     
     void MoveTowardsPlayer(Vector2 direction)
     {
