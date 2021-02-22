@@ -50,6 +50,7 @@ public class EnemyController : MonoBehaviour
             else
             {
                 Debug.Log("PlayerHitByEnemy");
+                PlayerHealthController.instance.DealDamage(1);
                 timerIsRunning = false;
             }
         }
