@@ -13,6 +13,9 @@ public class EnemyController : MonoBehaviour
     public Transform player;
     private Vector2 movement;
     public float distance;
+    
+    public float hitTimer = 0.2f;
+    public bool timerIsRunning = false;
 
     
     void Start()
@@ -35,6 +38,25 @@ public class EnemyController : MonoBehaviour
 
         //Calculate distance to player
         distance = Vector3.Distance(player.position, transform.position);
+
+        if (distance < 0.5)
+        {
+            timerIsRunning = true;
+
+            if (hitTimer > 0)
+            {
+                hitTimer -= Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log("PlayerHitByEnemy");
+                timerIsRunning = false;
+            }
+        }
+        else
+        {
+            hitTimer = 0.2f;
+        }
     }
 
     private void FixedUpdate()
@@ -76,15 +98,6 @@ public class EnemyController : MonoBehaviour
             {
                 movingRight = true;
             }
-        }
-    }
-
-    //Collision with player detection
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.name == "Player")
-        {
-            Debug.Log("EnemyHit");
         }
     }
 }
