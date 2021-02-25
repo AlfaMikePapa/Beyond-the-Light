@@ -16,10 +16,13 @@ public class PlayerController : MonoBehaviour
     private float groundCheckRadius = .1f;
     private bool canDoubleJump;
 
+    private Animator anim;
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         sprRend = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
 
@@ -35,6 +38,10 @@ public class PlayerController : MonoBehaviour
         {
             canDoubleJump = true;
         }
+
+        //set the variables used in the animator to the same variables in this script 
+        anim.SetBool("playerOnGround", playerOnGround);
+        anim.SetFloat("moveSpeed", Mathf.Abs(playerRb.velocity.x)); // <- take the absolute value of the velocity -> player animates while moving on a negative axis
     }
 
     //Player movement
