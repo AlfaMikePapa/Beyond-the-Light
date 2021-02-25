@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    //Moving player variables
     public float moveSpeed;
     public Transform leftPoint, rightPoint;
     private Rigidbody2D enemyRB;
     private bool movingRight;
     public GameObject Player;
-    
     public Transform player;
     private Vector2 movement;
     public float distance;
     
+    //Hitting player variables
     public float hitTimer = 0.2f;
     public bool timerIsRunning = false;
 
+    //Hitting enemy variables
+    public float enemyCurrentHealth;
+    public float enemyMaxHealth = 3;
+    public float nextHitTime = 1; //cooldown between hits
+    public float damage = 1; //hit damage
+    private float nextHit;
     
+
     void Start()
     {
         enemyRB = GetComponent<Rigidbody2D>();
@@ -27,10 +35,14 @@ public class EnemyController : MonoBehaviour
         rightPoint.parent = null;
 
         movingRight = true;
+
+        enemyCurrentHealth = enemyMaxHealth; //set enemy health
+        nextHit = Time.time; //for hit cooldown
     }
 
     void Update()
     {
+        HitEnemy();
         //players position  into movement
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
@@ -99,6 +111,25 @@ public class EnemyController : MonoBehaviour
             {
                 movingRight = true;
             }
+        }
+    }
+
+    void HitEnemy()
+    {
+        //Damage enemy if player is close and hits
+        if (Input.GetButtonDown("Fire1") && distance < 5 && nextHit <= Time.time)
+        {
+            //Reduce enemy health
+            enemyCurrentHealth -= damage;
+            
+            //Hit cooldown
+            nextHit = Time.time + nextHitTime;
+        }
+
+        //Disable enemy when health runs out
+        if (enemyCurrentHealth <= 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 }
