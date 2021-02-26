@@ -34,8 +34,9 @@ public class MainMenu2 : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-    }
 
+        Debug.Log("Quit"); //Tells Unity console when game closes
+    }
 
 
 
