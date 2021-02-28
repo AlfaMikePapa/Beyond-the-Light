@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
-{
+{   
+    public Canvas uiCanvas;
     public static bool isGamePaused = false;
 
     [SerializeField] GameObject pauseMenu;
-    public Canvas uiCanvas;
+
 
     // Update is called once per frame
     void Update()
