@@ -7,8 +7,12 @@ public class PlayerHealthController : MonoBehaviour
     //used so that we can use DealDamage() function in other scripts
     public static PlayerHealthController instance;
 
-    public int playerCurrentHealth;
-    public int playerMaxHealth;
+    public int playerCurrentHealth, playerMaxHealth;
+
+    public float invincibilityLength;
+    private float invincibilityCounter;
+
+
 
     //as soon as the game starts, set instance to this
     private void Awake()
@@ -24,20 +28,34 @@ public class PlayerHealthController : MonoBehaviour
 
     void Update()
     {
-
+        if(invincibilityCounter > 0)
+        {
+            invincibilityCounter -= Time.deltaTime;
+        }
     }
 
     //Function that deals given damage, can be called from other scripts
     public void DealDamage(int damage)
     {
-        playerCurrentHealth -= damage;
-
-        //disable the player if health is 0 or less
-        if (playerCurrentHealth <= 0)
+        if(invincibilityCounter <= 0)
         {
-            gameObject.SetActive(false);
-        }
 
-        UIController.instance.UpdateHealthUI();
+            playerCurrentHealth -= damage;
+
+            //disable the player if health is 0 or less
+            if (playerCurrentHealth <= 0)
+            {
+                playerCurrentHealth = 0;
+
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                //reset the invincibility counter
+                invincibilityCounter = invincibilityLength;
+            }
+
+            UIController.instance.UpdateHealthUI();
+        }
     }
 }
