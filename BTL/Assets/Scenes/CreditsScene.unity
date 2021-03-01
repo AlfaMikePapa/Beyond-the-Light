@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2199dcc8be4d1584683ba691ca28d6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackGround: {fileID: 138345985}
+  BackGround: {fileID: 0}
   easterEggVis: {fileID: 340998374}
 --- !u!1 &216813198
 GameObject:
@@ -542,7 +542,6 @@ GameObject:
   - component: {fileID: 539128607}
   - component: {fileID: 539128606}
   - component: {fileID: 539128605}
-  - component: {fileID: 539128608}
   m_Layer: 0
   m_Name: CanvasBackGr
   m_TagString: Untagged
@@ -632,20 +631,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &539128608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539128603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2199dcc8be4d1584683ba691ca28d6b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BackGround: {fileID: 539128607}
-  easterEggVis: {fileID: 1061900176}
 --- !u!1 &608457101
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +894,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d7fe0434decb24b892cb959ff4301c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 0}
+  easterEggVis: {fileID: 0}
 --- !u!224 &1034501340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1119,6 +1106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d7fe0434decb24b892cb959ff4301c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackGround: {fileID: 0}
+  easterEggVis: {fileID: 0}
 --- !u!114 &1271627215
 MonoBehaviour:
   m_ObjectHideFlags: 0

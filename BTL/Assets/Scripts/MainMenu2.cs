@@ -46,6 +46,45 @@ public class MainMenu2 : MonoBehaviour
      *
      */
 
+    /*
+    public Canvas BackGround;
+    public static bool easterEggVisible = false;
+
+    [SerializeField] GameObject easterEggVis;
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (easterEggVisible)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
+
+
+    public void ResumeGame()
+    {
+        easterEggVis.SetActive(false);
+        easterEggVisible = false;
+        BackGround.enabled = false;
+    }
+
+    void PauseGame()
+    {
+        easterEggVis.SetActive(true);
+        easterEggVisible = true;
+        BackGround.enabled = true;
+
+    }
+    */
+
     //Credits menu BackBtn functions
     public void CrdBackBtn()
     {
