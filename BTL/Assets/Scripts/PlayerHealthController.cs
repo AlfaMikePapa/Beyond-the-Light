@@ -12,6 +12,8 @@ public class PlayerHealthController : MonoBehaviour
     public float invincibilityLength;
     private float invincibilityCounter;
 
+    private SpriteRenderer sprRend;
+
 
 
     //as soon as the game starts, set instance to this
@@ -24,6 +26,8 @@ public class PlayerHealthController : MonoBehaviour
     {
         //Set players health to max at the start of the game/level
         playerCurrentHealth = playerMaxHealth;
+
+        sprRend = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -31,6 +35,12 @@ public class PlayerHealthController : MonoBehaviour
         if(invincibilityCounter > 0)
         {
             invincibilityCounter -= Time.deltaTime;
+
+            if(invincibilityCounter <= 0)
+            {
+                //set the players alpha back to normal
+                sprRend.color = new Color(sprRend.color.r, sprRend.color.g, sprRend.color.b, 1f);
+            }
         }
     }
 
@@ -53,6 +63,9 @@ public class PlayerHealthController : MonoBehaviour
             {
                 //reset the invincibility counter
                 invincibilityCounter = invincibilityLength;
+
+                //set the players alpha to half
+                sprRend.color = new Color(sprRend.color.r, sprRend.color.g, sprRend.color.b, .5f);
             }
 
             UIController.instance.UpdateHealthUI();
