@@ -12,6 +12,8 @@ public class MainMenu2 : MonoBehaviour
      *
      */
 
+    public static int btnId;
+
     //Main Menu play button function
     public void PlayGame()
     {
@@ -120,14 +122,22 @@ public class MainMenu2 : MonoBehaviour
     }
 
     // Select level 1
-    public void Lvl1()
+    public void Level1Scene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+        //Lets set button id for later use. (Loadingscreen-script)
+        btnId = 1;
+        SceneManager.LoadScene("LoadingScreen");
+
     }
 
     // Select level 2
-    public void Lvl2()
+    public void Level2Scene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //Lets set button id for later use. (For Loadingscreen-script)
+        btnId = 2;
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("LoadingScreen");
     }
+
 }
