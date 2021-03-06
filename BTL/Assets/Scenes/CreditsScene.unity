@@ -354,8 +354,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 762.5, y: 374.5}
-  m_SizeDelta: {x: 1525, y: 749}
+  m_AnchoredPosition: {x: 752, y: 374.5}
+  m_SizeDelta: {x: 1504, y: 749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &138345987
 MonoBehaviour:
@@ -369,7 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2199dcc8be4d1584683ba691ca28d6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackGround: {fileID: 0}
   easterEggVis: {fileID: 340998374}
 --- !u!1 &216813198
 GameObject:
@@ -894,8 +893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d7fe0434decb24b892cb959ff4301c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackGround: {fileID: 0}
-  easterEggVis: {fileID: 0}
 --- !u!224 &1034501340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -950,8 +947,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.5179138}
+  m_SizeDelta: {x: 0, y: -0.96417236}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1061900178
 MonoBehaviour:
@@ -972,7 +969,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e751b846b2956164faa8ba5d2d139169, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0047b9cf4dbdd1645b35f69f78bb76df, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1106,8 +1103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d7fe0434decb24b892cb959ff4301c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackGround: {fileID: 0}
-  easterEggVis: {fileID: 0}
 --- !u!114 &1271627215
 MonoBehaviour:
   m_ObjectHideFlags: 0
