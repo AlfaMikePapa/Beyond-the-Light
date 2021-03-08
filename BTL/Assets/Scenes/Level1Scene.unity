@@ -223,7 +223,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77713055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.48, y: -1.4, z: 0}
+  m_LocalPosition: {x: -3.48, y: -1.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1740352649}
@@ -1995,6 +1995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 799689143}
   - component: {fileID: 799689142}
+  - component: {fileID: 799689144}
   m_Layer: 0
   m_Name: Global Light 2D
   m_TagString: Untagged
@@ -2057,6 +2058,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &799689144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799689141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1acb4a0180f9b6d48ab7b7c0e8f8b8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerIsUnderground: 0
+  Player: {fileID: 77713055}
+  minimum: 0.2
+  maximum: 1
+  t: 0
+  speed: 0.3
 --- !u!1 &845497282
 GameObject:
   m_ObjectHideFlags: 0
