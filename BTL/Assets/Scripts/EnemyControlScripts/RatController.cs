@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class RatController : MonoBehaviour
 {
-    //Moving player variables
+    //Moving enemy variables
     public float moveSpeed;
     public Transform leftPoint, rightPoint;
     private Rigidbody2D enemyRB;
@@ -14,6 +14,11 @@ public class EnemyController : MonoBehaviour
     private Vector2 movement;
     public float distance;
     
+    //To flip the sprite
+    public Rigidbody2D enemyRb;
+    public SpriteRenderer sprRend;
+
+
     //Hitting player variables
     public float hitTimer = 0.2f;
     public bool timerIsRunning = false;
@@ -24,6 +29,8 @@ public class EnemyController : MonoBehaviour
     public float nextHitTime = 1; //cooldown between hits
     public float damage = 1; //hit damage
     private float nextHit;
+
+    Animator ratAC;
     
 
     void Start()
@@ -38,6 +45,8 @@ public class EnemyController : MonoBehaviour
 
         enemyCurrentHealth = enemyMaxHealth; //set enemy health
         nextHit = Time.time; //for hit cooldown
+
+        ratAC = GetComponent<Animator>(); //Animator controller of rat
     }
 
     void Update()
@@ -69,18 +78,32 @@ public class EnemyController : MonoBehaviour
         {
             hitTimer = 0.2f;
         }
+
+        Debug.Log(enemyRb.velocity.x);
+
+        //flip the sprite based on which way the enemy is moving
+        if (enemyRb.velocity.x < 0)
+        {
+            sprRend.flipX = true;
+        }
+        if (enemyRb.velocity.x > 0)
+        {
+            sprRend.flipX = false;
+        }
     }
 
     private void FixedUpdate()
     {
         //Increased movement speed when player is close and follow
-        if (distance < 3.5)
+        if (distance < 3.5 && enemyRB.position.x > leftPoint.position.x && enemyRB.position.x < rightPoint.position.x) //Only follow between points
         {
+            ratAC.SetFloat("Speed", 2);
             moveSpeed = 4;
             MoveTowardsPlayer(movement);
         }
         else
         {
+            ratAC.SetFloat("Speed", 0.8f);
             moveSpeed = 1.5f;
             MoveBetweenPoints();
         }
@@ -88,7 +111,7 @@ public class EnemyController : MonoBehaviour
     
     void MoveTowardsPlayer(Vector2 direction)
     {
-        enemyRB.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+            enemyRB.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
     public void MoveBetweenPoints()
@@ -116,7 +139,7 @@ public class EnemyController : MonoBehaviour
     void HitEnemy()
     {
         //Damage enemy if player is close and hits
-        if (Input.GetButtonDown("Fire1") && distance < 5 && nextHit <= Time.time)
+        if (Input.GetButtonDown("Fire1") && distance < 1 && nextHit <= Time.time)
         {
             //Reduce enemy health
             enemyCurrentHealth -= damage;
