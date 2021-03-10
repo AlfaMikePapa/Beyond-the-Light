@@ -82,15 +82,7 @@ public class CrocodileController : MonoBehaviour
 
         //Debug.Log(enemyRb.velocity.x);
 
-        //flip the sprite based on which way the enemy is moving
-        if (enemyRb.velocity.x < 0)
-        {
-            sprRend.flipX = false;
-        }
-        if (enemyRb.velocity.x > 0)
-        {
-            sprRend.flipX = true;
-        }
+
     }
 
     private void FixedUpdate()
@@ -101,12 +93,31 @@ public class CrocodileController : MonoBehaviour
             anim.SetBool("isAttacking", true); //Change animation to attack
             moveSpeed = 4;
             MoveTowardsPlayer(movement);
+
+            if (enemyRb.position.x > player.position.x) //Flip sprite according to player if in attack range
+            {
+                sprRend.flipX = false;
+            }
+            else
+            {
+                sprRend.flipX = true;
+            }
         }
         else
         {
             anim.SetBool("isAttacking", false);
             moveSpeed = 1.5f;
             MoveBetweenPoints();
+
+            if (enemyRb.velocity.x < 0) //Flip sprite according to points if not in attack range
+            {
+                sprRend.flipX = false;
+            }
+            if (enemyRb.velocity.x > 0)
+            {
+                sprRend.flipX = true;
+            }
+
         }
     }
 

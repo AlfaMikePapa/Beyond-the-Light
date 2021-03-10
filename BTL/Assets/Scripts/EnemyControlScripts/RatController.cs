@@ -77,35 +77,42 @@ public class RatController : MonoBehaviour
         else
         {
             hitTimer = 0.2f;
-        }
-
-        //Debug.Log(enemyRb.velocity.x);
-
-        //flip the sprite based on which way the enemy is moving
-        if (enemyRb.velocity.x < 0)
-        {
-            sprRend.flipX = true;
-        }
-        if (enemyRb.velocity.x > 0)
-        {
-            sprRend.flipX = false;
-        }
+        }   
     }
 
     private void FixedUpdate()
     {
         //Increased movement speed when player is close and follow
         if (distance < 3.5 && enemyRB.position.x > leftPoint.position.x && enemyRB.position.x < rightPoint.position.x) //Only follow between points
-        {
+        {           
             ratAC.SetFloat("Speed", 2);
             moveSpeed = 4;
             MoveTowardsPlayer(movement);
+            
+            if (enemyRb.position.x > player.position.x) //Flip sprite according to player if in attack range
+            {
+                sprRend.flipX = true;
+            }
+            else
+            {
+                sprRend.flipX = false;
+            }
         }
         else
         {
             ratAC.SetFloat("Speed", 0.8f);
             moveSpeed = 1.5f;
             MoveBetweenPoints();
+            
+            if (enemyRb.velocity.x < 0) //Flip sprite according to points if not in attack range
+            {
+                sprRend.flipX = true;
+            }
+            if (enemyRb.velocity.x > 0)
+            {
+                sprRend.flipX = false;
+            }
+
         }
     }
     
