@@ -79,7 +79,7 @@ public class RatController : MonoBehaviour
             hitTimer = 0.2f;
         }
 
-        Debug.Log(enemyRb.velocity.x);
+        //Debug.Log(enemyRb.velocity.x);
 
         //flip the sprite based on which way the enemy is moving
         if (enemyRb.velocity.x < 0)

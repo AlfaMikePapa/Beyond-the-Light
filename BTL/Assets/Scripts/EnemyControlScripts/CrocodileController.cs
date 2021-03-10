@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class CrocodileController : MonoBehaviour
 {
     //Moving enemy variables
     public float moveSpeed;
@@ -30,6 +30,9 @@ public class EnemyController : MonoBehaviour
     public float damage = 1; //hit damage
     private float nextHit;
 
+    //Animation
+    private Animator anim;
+
 
     void Start()
     {
@@ -43,12 +46,14 @@ public class EnemyController : MonoBehaviour
 
         enemyCurrentHealth = enemyMaxHealth; //set enemy health
         nextHit = Time.time; //for hit cooldown
+
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         HitEnemy();
-        //players position  into movement
+        //players position into movement
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
         movement = direction;
@@ -75,16 +80,16 @@ public class EnemyController : MonoBehaviour
             hitTimer = 0.2f;
         }
 
-        Debug.Log(enemyRb.velocity.x);
+        //Debug.Log(enemyRb.velocity.x);
 
         //flip the sprite based on which way the enemy is moving
         if (enemyRb.velocity.x < 0)
         {
-            sprRend.flipX = true;
+            sprRend.flipX = false;
         }
         if (enemyRb.velocity.x > 0)
         {
-            sprRend.flipX = false;
+            sprRend.flipX = true;
         }
     }
 
@@ -93,11 +98,13 @@ public class EnemyController : MonoBehaviour
         //Increased movement speed when player is close and follow
         if (distance < 3.5 && enemyRB.position.x > leftPoint.position.x && enemyRB.position.x < rightPoint.position.x) //Only follow between points
         {
+            anim.SetBool("isAttacking", true); //Change animation to attack
             moveSpeed = 4;
             MoveTowardsPlayer(movement);
         }
         else
         {
+            anim.SetBool("isAttacking", false);
             moveSpeed = 1.5f;
             MoveBetweenPoints();
         }

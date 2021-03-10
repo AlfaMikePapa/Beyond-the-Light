@@ -20,15 +20,15 @@ public class GlobalLightControl : MonoBehaviour
 
     private void Update()
     {           
-        //Reduce light to 0.2f when player is below -8
-        if (myLight.intensity >= 0.2f && Player.transform.position.y < -8)
+        //Reduce light to 0.2f when player is below -25
+        if (myLight.intensity >= 0.2f && Player.transform.position.y < -25)
         {
             myLight.intensity += Time.deltaTime * speed * direction;
             direction = -1f;
         }
 
-        //Increase light to 1.0f when player is above -8
-        if (myLight.intensity <= 1.0f && Player.transform.position.y > -8)
+        //Increase light to 1.0f when player is above -25
+        if (myLight.intensity <= 1.0f && Player.transform.position.y > -25)
         {
             myLight.intensity += Time.deltaTime * speed * direction;
             direction = 1f;
