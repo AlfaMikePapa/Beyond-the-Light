@@ -16,10 +16,9 @@ public class PickUpObject : Interactable
 
     void PickUp()
     {
-        // Add item to inventory
         Debug.Log("Picking up " + item.name);
-        // Destroys the object from world
-        Destroy(gameObject);
+        // Add item to inventory
+        Destroy(gameObject); // Destroys the object from world
     }
 
 
