@@ -13,13 +13,9 @@ public class PathFollower : MonoBehaviour
     int CurrentNode;
     private Vector3 startPosition;
 
-    public bool PlayerIsClose = false;
-    //public GameObject Player;
-
     // Use this for initialization
     void Start()
     {
-        //PathNode = GetComponentInChildren<>();
         CheckNode();
     }
 
@@ -33,32 +29,35 @@ public class PathFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerIsClose == true)
-        { 
-            Timer += Time.deltaTime * MoveSpeed;
+        Timer += Time.deltaTime * MoveSpeed;
 
-            if (Valopallo.transform.position != CurrentPositionHolder)
-            {
-
+        if (Valopallo.transform.position != CurrentPositionHolder)
+        {
                 Valopallo.transform.position = Vector3.Lerp(startPosition, CurrentPositionHolder, Timer);
-            }
-            else
+        }
+        else
+        {
+            if (CurrentNode < PathNode.Length - 1)
             {
-
-                if (CurrentNode < PathNode.Length - 1)
-                {
-                    CurrentNode++;
-                    CheckNode();
-                }
+                CurrentNode++;
+                CheckNode();
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col) //Movespeed to 0.3f when player in range
     {
         if (col.gameObject.tag == "Player")
         {
-            PlayerIsClose = true;
+            MoveSpeed = 0.3f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col) //Movespeed to 0.0f when player is out of range
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            MoveSpeed = 0.0f;
         }
     }
 }
