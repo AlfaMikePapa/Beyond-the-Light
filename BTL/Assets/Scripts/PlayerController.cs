@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class PlayerController : MonoBehaviour
     private bool canDoubleJump;
 
     private Animator anim;
+
+    public Canvas bgcanvas;
+    public Image srImage;
 
     void Start()
     {
@@ -82,5 +86,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
 
 }
