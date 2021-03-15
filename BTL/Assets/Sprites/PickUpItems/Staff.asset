@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbeb527a2afa503429bc314393a943b5, type: 3}
   m_Name: Staff
   m_EditorClassIdentifier: 
-  name: New item
+  name: StaffTest
   icon: {fileID: 21300000, guid: de61c8cbdaaec20449f01fc6f8b2d764, type: 3}
   isDefaultItem: 0
