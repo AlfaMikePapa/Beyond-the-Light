@@ -49,7 +49,7 @@ public class PathFollower : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            MoveSpeed = 0.3f;
+            MoveSpeed = 0.4f;
         }
     }
 
