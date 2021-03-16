@@ -31,4 +31,20 @@ public class LevelManager : MonoBehaviour
 
         SceneManager.LoadScene(nextLevel);
     }
+
+    public void RestartLevel()
+    {
+        StartCoroutine(RestartLevelCoroutine());
+    }
+
+    public IEnumerator RestartLevelCoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        UIController.instance.FadeToBlack();
+
+        yield return new WaitForSeconds((1f / UIController.instance.fadeSpeed) + .25f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

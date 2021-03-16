@@ -58,6 +58,9 @@ public class PlayerHealthController : MonoBehaviour
                 playerCurrentHealth = 0;
 
                 gameObject.SetActive(false);
+
+                //restart the current level
+                LevelManager.instance.RestartLevel();
             }
             else
             {
