@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayerMask;
 
+    private bool playerOnWater;
+    public Transform waterCheck;
+    public LayerMask waterLayerMask;
+
     private float groundCheckRadius = .1f;
     private bool canDoubleJump;
 
@@ -74,6 +78,18 @@ public class PlayerController : MonoBehaviour
         {
             knockBackCounter -= Time.deltaTime;
         }
+
+        // if player is on water gravity will be -0.03
+        if (playerOnWater == true)
+        {
+            playerRb.gravityScale = -0.03f;
+            Debug.Log("Ollaa vittu märkiä");
+        }
+        else
+        {
+            playerRb.gravityScale = 5f;
+            Debug.Log("Nyt ollaa kuivia");
+        }
            
         //count down the attack cooldown
         attackCooldown -= Time.deltaTime;
@@ -113,7 +129,14 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
-
+   
+    //Check if the player is on the water
+    void CheckWater()
+    {
+        playerOnWater = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, waterLayerMask);
+        Debug.Log("VERES");
+    }
+    
     //Check if the player is on the ground
     void CheckGround()
     {
