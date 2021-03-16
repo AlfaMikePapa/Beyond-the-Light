@@ -55,11 +55,17 @@ public class PlayerController : MonoBehaviour
         //Reduce light to 0.2f when player is below -25
         if (playerRb.transform.position.y < -35)
         {
-            myLight.intensity = 0.8f;           
+            myLight.intensity = 0.8f;
         }
         else
         {
             myLight.intensity = 0.0f;
+        }
+
+        //attacking
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Attack();
         }
     }
 
@@ -71,11 +77,13 @@ public class PlayerController : MonoBehaviour
         //flip the sprite based on which way the player is moving
         if (playerRb.velocity.x < 0)
         {
-            sprRend.flipX = true;
+            //sprRend.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (playerRb.velocity.x > 0)
         {
-            sprRend.flipX = false;
+            //sprRend.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
@@ -91,15 +99,21 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && playerOnGround)
         {
             playerRb.velocity = new Vector2(playerRb.velocity.x, jumpForce);
-        } else
+        }
+        else
         {
             //double jumping
-            if(Input.GetButtonDown("Jump") && canDoubleJump)
+            if (Input.GetButtonDown("Jump") && canDoubleJump)
             {
                 playerRb.velocity = new Vector2(playerRb.velocity.x, jumpForce);
                 canDoubleJump = false;
             }
         }
+    }
+
+    void Attack()
+    {
+        anim.SetTrigger("attack");
     }
 
 
