@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     public Canvas bgcanvas;
     public Image srImage;
 
+    //Attacking variables
+    public float attackCooldownTime, attackCooldown;
+
 
     void Start()
     {
@@ -32,6 +35,8 @@ public class PlayerController : MonoBehaviour
         sprRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         myLight = GetComponent<UnityEngine.Experimental.Rendering.Universal.Light2D>();
+
+        attackCooldown = attackCooldownTime;
     }
 
 
@@ -40,6 +45,9 @@ public class PlayerController : MonoBehaviour
         movePlayer();
         CheckGround();
         Jump();
+
+        //count down the attack cooldown
+        attackCooldown -= Time.deltaTime;
 
 
         //if player is on the ground -> reset double jump
@@ -63,9 +71,10 @@ public class PlayerController : MonoBehaviour
         }
 
         //attacking
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && attackCooldown <= 0)
         {
             Attack();
+            attackCooldown = attackCooldownTime;
         }
     }
 
