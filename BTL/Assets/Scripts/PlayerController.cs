@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     UnityEngine.Experimental.Rendering.Universal.Light2D myLight;
 
     public float moveSpeed;
@@ -28,6 +30,14 @@ public class PlayerController : MonoBehaviour
     //Attacking variables
     public float attackCooldownTime, attackCooldown;
 
+    //Knockback variables
+    public float knockBackLength, knockBackForce;
+    private float knockBackCounter;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -42,19 +52,32 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        movePlayer();
-        CheckGround();
-        Jump();
+        if (knockBackCounter <= 0)
+        {
+            movePlayer();
+            CheckGround();
+            Jump();
 
+            //if player is on the ground -> reset double jump
+            if (playerOnGround)
+            {
+                canDoubleJump = true;
+            }
+
+            //attacking
+            if (Input.GetButtonDown("Fire1") && attackCooldown <= 0)
+            {
+                Attack();
+                attackCooldown = attackCooldownTime;
+            }
+        } else
+        {
+            knockBackCounter -= Time.deltaTime;
+        }
+           
         //count down the attack cooldown
         attackCooldown -= Time.deltaTime;
 
-
-        //if player is on the ground -> reset double jump
-        if (playerOnGround)
-        {
-            canDoubleJump = true;
-        }
 
         //set the variables used in the animator to the same variables in this script 
         anim.SetBool("playerOnGround", playerOnGround);
@@ -70,12 +93,7 @@ public class PlayerController : MonoBehaviour
             myLight.intensity = 0.0f;
         }
 
-        //attacking
-        if (Input.GetButtonDown("Fire1") && attackCooldown <= 0)
-        {
-            Attack();
-            attackCooldown = attackCooldownTime;
-        }
+
     }
 
     //Player movement
@@ -125,5 +143,13 @@ public class PlayerController : MonoBehaviour
         anim.SetTrigger("attack");
     }
 
+ 
+    public void KnockBack()
+    {
+        knockBackCounter = knockBackLength;
+        playerRb.velocity = new Vector2(0f, knockBackForce);
+
+        anim.SetTrigger("hurt");
+    }
 
 }

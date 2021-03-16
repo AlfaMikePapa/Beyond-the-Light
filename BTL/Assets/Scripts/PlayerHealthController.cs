@@ -61,6 +61,9 @@ public class PlayerHealthController : MonoBehaviour
             }
             else
             {
+                //knockback the player
+                PlayerController.instance.KnockBack();
+
                 //reset the invincibility counter
                 invincibilityCounter = invincibilityLength;
 
