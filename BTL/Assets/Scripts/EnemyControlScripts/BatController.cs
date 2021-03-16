@@ -28,7 +28,6 @@ public class BatController : MonoBehaviour
     public float enemyMaxHealth = 3;
     public float nextHitTime = 1; //cooldown between hits
     public float damage = 1; //hit damage
-    private float nextHit;
 
     //Animator batAC;
 
@@ -44,14 +43,12 @@ public class BatController : MonoBehaviour
         movingRight = true;
 
         enemyCurrentHealth = enemyMaxHealth; //set enemy health
-        nextHit = Time.time; //for hit cooldown
 
         //batAC = GetComponent<Animator>(); //Animator controller of Hog
     }
 
     void Update()
     {
-        HitEnemy();
         //players position  into movement
         Vector3 direction = player.position - transform.position;
         direction.Normalize();
@@ -143,22 +140,24 @@ public class BatController : MonoBehaviour
         }
     }
 
-    void HitEnemy()
+    void TakeDamage()
     {
-        //Damage enemy if player is close and hits
-        if (Input.GetButtonDown("Fire1") && distance < 1 && nextHit <= Time.time)
-        {
-            //Reduce enemy health
-            enemyCurrentHealth -= damage;
+        //Reduce enemy health
+        enemyCurrentHealth -= damage;
 
-            //Hit cooldown
-            nextHit = Time.time + nextHitTime;
-        }
-
-        //Disable enemy when health runs out
+        //delete enemy when health runs out
         if (enemyCurrentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Hitbox"))
+        {
+            Debug.Log("Löit vihollista, hienosti tehty");
+            TakeDamage();
         }
     }
 }
