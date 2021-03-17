@@ -83,12 +83,11 @@ public class PlayerController : MonoBehaviour
         if (playerOnWater == true)
         {
             playerRb.gravityScale = -0.03f;
-            Debug.Log("Ollaa vittu märkiä");
+            Debug.Log("Ollaa märkiä");
         }
         else
         {
             playerRb.gravityScale = 5f;
-            Debug.Log("Nyt ollaa kuivia");
         }
            
         //count down the attack cooldown
